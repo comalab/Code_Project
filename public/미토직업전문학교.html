@@ -101,7 +101,11 @@
     </script>
 <style>
         .banner-gradient {
-            background: linear-gradient(135deg, #d84315 0%, #ff8a65 100%);
+            background:
+                linear-gradient(135deg, rgba(216, 67, 21, 0.88) 0%, rgba(255, 138, 101, 0.82) 100%),
+                url('images/main.png');
+            background-size: cover;
+            background-position: center;
         }
         .hero-search-shadow {
             box-shadow: 0 8px 32px rgba(216, 67, 21, 0.15);
@@ -150,152 +154,11 @@
 <main class="flex-1 overflow-y-auto pb-6">
 <!-- Hero Banner -->
 <section class="banner-gradient rounded-b-[32px] pt-10 pb-20 px-container-margin relative flex flex-col items-center justify-center text-center">
-<div class="absolute top-6 left-6 right-6 flex justify-between">
-<button class="bg-white/20 hover:bg-white/30 backdrop-blur-md p-2 rounded-full text-white transition-colors" aria-label="공유">
-<span class="material-symbols-outlined text-sm">ios_share</span>
-</button>
-<button class="bg-white/20 hover:bg-white/30 backdrop-blur-md p-2 rounded-full text-white transition-colors" aria-label="알림">
-<span class="material-symbols-outlined text-sm">notifications</span>
-</button>
-</div>
-<div class="w-20 h-20 bg-white/15 border border-white/35 rounded-2xl flex items-center justify-center mb-6 mt-8 shadow-lg">
-<svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" class="w-10 h-10">
-<path d="M2 8.5 12 4l10 4.5-10 4.5-10-4.5Z"></path>
-<path d="M6 10.6V15c0 1.7 2.7 3 6 3s6-1.3 6-3v-4.4"></path>
-<path d="M21 8.5v6" stroke-linecap="round"></path>
-</svg>
+<div class="w-20 h-20 bg-white/15 border border-white/35 rounded-2xl flex items-center justify-center mb-6 mt-8 shadow-lg overflow-hidden">
+<img src="images/logo.gif" alt="미토직업전문학교 로고" class="w-full h-full object-contain p-2">
 </div>
 <h1 class="font-headline-xl text-headline-lg md:text-headline-xl text-white mb-2 leading-tight drop-shadow-md">미토직업전문학교</h1>
 <p class="font-body-md text-body-md text-white/90 mt-2 mb-6">실무 중심 교육으로 취업 성공까지</p>
-</section>
-<!-- Featured Courses -->
-<section class="mb-10 pl-container-margin mt-6">
-<div class="flex justify-between items-end pr-container-margin mb-4">
-<h2 class="font-headline-md text-headline-md text-on-surface">추천 훈련과정</h2>
-<a class="font-body-sm text-sm text-[#d84315] font-semibold flex items-center" href="추천과정.html">더보기 <span class="material-symbols-outlined text-sm">chevron_right</span></a>
-</div>
-<div class="flex gap-4 overflow-x-auto hide-scrollbar pb-4 pr-container-margin snap-x">
-<!-- Course 1 -->
-<a class="min-w-[240px] bg-white rounded-2xl border border-outline-variant/30 shadow-sm snap-start overflow-hidden group block" href="https://www.work24.go.kr/hr/a/a/3100/selectTracseDetl.do?tracseId=AIG20263001336965&tracseTme=1&crseTracseSe=C0061&trainstCstmrId=500020036328" target="_blank" rel="noopener">
-<div class="h-32 relative bg-gradient-to-br from-primary to-tertiary flex items-center justify-center">
-<span class="material-symbols-outlined text-white/80" style="font-size:44px;">campaign</span>
-<div class="absolute top-3 left-3 bg-white/90 backdrop-blur-sm px-2 py-1 rounded text-[10px] font-bold text-[#d84315]">광고콘텐츠제작</div>
-</div>
-<div class="p-4">
-<h3 class="font-label-lg text-base text-on-surface font-bold mb-1 line-clamp-2">AI기반 디지털 광고콘텐츠 영상 제작 실무</h3>
-<div class="flex gap-1 mb-3">
-<span class="text-[10px] bg-surface-container px-2 py-1 rounded text-on-surface-variant">국비지원</span>
-<span class="text-[10px] bg-surface-container px-2 py-1 rounded text-on-surface-variant">산업구조변화대응</span>
-</div>
-<div class="flex items-center justify-between">
-<p class="font-price-display text-lg text-on-surface">2,995,200원</p>
-<span class="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center text-[#d84315] group-hover:bg-[#d84315] group-hover:text-white transition-colors">
-<span class="material-symbols-outlined text-sm">arrow_forward</span>
-</span>
-</div>
-</div>
-</a>
-<!-- Course 2 -->
-<a class="min-w-[240px] bg-white rounded-2xl border border-outline-variant/30 shadow-sm snap-start overflow-hidden group block" href="https://www.work24.go.kr/hr/a/a/3100/selectTracseDetl.do?tracseId=AIG20250000542316&tracseTme=1&crseTracseSe=C0061&trainstCstmrId=500020036328" target="_blank" rel="noopener">
-<div class="h-32 relative bg-gradient-to-br from-primary to-tertiary flex items-center justify-center">
-<span class="material-symbols-outlined text-white/80" style="font-size:44px;">support_agent</span>
-<div class="absolute top-3 left-3 bg-white/90 backdrop-blur-sm px-2 py-1 rounded text-[10px] font-bold text-[#d84315]">직업상담</div>
-</div>
-<div class="p-4">
-<h3 class="font-label-lg text-base text-on-surface font-bold mb-1 line-clamp-2">[과정평가형] 직업상담사 2급 자격증</h3>
-<div class="flex gap-1 mb-3">
-<span class="text-[10px] bg-surface-container px-2 py-1 rounded text-on-surface-variant">국비지원</span>
-<span class="text-[10px] bg-surface-container px-2 py-1 rounded text-on-surface-variant">과정평가형훈련</span>
-</div>
-<div class="flex items-center justify-between">
-<p class="font-price-display text-lg text-on-surface">3,100,800원</p>
-<span class="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center text-[#d84315] group-hover:bg-[#d84315] group-hover:text-white transition-colors">
-<span class="material-symbols-outlined text-sm">arrow_forward</span>
-</span>
-</div>
-</div>
-</a>
-<!-- Course 3 -->
-<a class="min-w-[240px] bg-white rounded-2xl border border-outline-variant/30 shadow-sm snap-start overflow-hidden group block" href="https://www.work24.go.kr/hr/a/a/3100/selectTracseDetl.do?tracseId=AIG20253001134738&tracseTme=2&crseTracseSe=C0061&trainstCstmrId=500020036328" target="_blank" rel="noopener">
-<div class="h-32 relative bg-gradient-to-br from-primary to-tertiary flex items-center justify-center">
-<span class="material-symbols-outlined text-white/80" style="font-size:44px;">design_services</span>
-<div class="absolute top-3 left-3 bg-white/90 backdrop-blur-sm px-2 py-1 rounded text-[10px] font-bold text-[#d84315]">UI/UX엔지니어링</div>
-</div>
-<div class="p-4">
-<h3 class="font-label-lg text-base text-on-surface font-bold mb-1 line-clamp-2">디지털 스마트케어 콘텐츠 디자인 실무(프리미어, 에펙)</h3>
-<div class="flex gap-1 mb-3">
-<span class="text-[10px] bg-surface-container px-2 py-1 rounded text-on-surface-variant">국비지원</span>
-<span class="text-[10px] bg-surface-container px-2 py-1 rounded text-on-surface-variant">산업구조변화대응</span>
-</div>
-<div class="flex items-center justify-between">
-<p class="font-price-display text-lg text-on-surface">3,972,000원</p>
-<span class="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center text-[#d84315] group-hover:bg-[#d84315] group-hover:text-white transition-colors">
-<span class="material-symbols-outlined text-sm">arrow_forward</span>
-</span>
-</div>
-</div>
-</a>
-<!-- Course 4 -->
-<a class="min-w-[240px] bg-white rounded-2xl border border-outline-variant/30 shadow-sm snap-start overflow-hidden group block" href="https://www.work24.go.kr/hr/a/a/3100/selectTracseDetl.do?tracseId=AIG20250000542349&tracseTme=3&crseTracseSe=C0061&trainstCstmrId=500020036328" target="_blank" rel="noopener">
-<div class="h-32 relative bg-gradient-to-br from-primary to-tertiary flex items-center justify-center">
-<span class="material-symbols-outlined text-white/80" style="font-size:44px;">movie</span>
-<div class="absolute top-3 left-3 bg-white/90 backdrop-blur-sm px-2 py-1 rounded text-[10px] font-bold text-[#d84315]">애니메이션제작</div>
-</div>
-<div class="p-4">
-<h3 class="font-label-lg text-base text-on-surface font-bold mb-1 line-clamp-2">영상편집디자인(멀티미디어콘텐츠제작전문가 자격)</h3>
-<div class="flex gap-1 mb-3">
-<span class="text-[10px] bg-surface-container px-2 py-1 rounded text-on-surface-variant">국비지원</span>
-<span class="text-[10px] bg-surface-container px-2 py-1 rounded text-on-surface-variant">과정평가형훈련</span>
-</div>
-<div class="flex items-center justify-between">
-<p class="font-price-display text-lg text-on-surface">3,744,000원</p>
-<span class="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center text-[#d84315] group-hover:bg-[#d84315] group-hover:text-white transition-colors">
-<span class="material-symbols-outlined text-sm">arrow_forward</span>
-</span>
-</div>
-</div>
-</a>
-<!-- Course 5 -->
-<a class="min-w-[240px] bg-white rounded-2xl border border-outline-variant/30 shadow-sm snap-start overflow-hidden group block" href="https://www.work24.go.kr/hr/a/a/3100/selectTracseDetl.do?tracseId=AIG20263001336759&tracseTme=3&crseTracseSe=C0061&trainstCstmrId=500020036328" target="_blank" rel="noopener">
-<div class="h-32 relative bg-gradient-to-br from-primary to-tertiary flex items-center justify-center">
-<span class="material-symbols-outlined text-white/80" style="font-size:44px;">local_shipping</span>
-<div class="absolute top-3 left-3 bg-white/90 backdrop-blur-sm px-2 py-1 rounded text-[10px] font-bold text-[#d84315]">운송관리</div>
-</div>
-<div class="p-4">
-<h3 class="font-label-lg text-base text-on-surface font-bold mb-1 line-clamp-2">AI 스마트 해양물류·무역관리 실무자 양성과정</h3>
-<div class="flex gap-1 mb-3">
-<span class="text-[10px] bg-surface-container px-2 py-1 rounded text-on-surface-variant">국비지원</span>
-<span class="text-[10px] bg-surface-container px-2 py-1 rounded text-on-surface-variant">산업구조변화대응</span>
-</div>
-<div class="flex items-center justify-between">
-<p class="font-price-display text-lg text-on-surface">5,852,080원</p>
-<span class="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center text-[#d84315] group-hover:bg-[#d84315] group-hover:text-white transition-colors">
-<span class="material-symbols-outlined text-sm">arrow_forward</span>
-</span>
-</div>
-</div>
-</a>
-<!-- Course 6 -->
-<a class="min-w-[240px] bg-white rounded-2xl border border-outline-variant/30 shadow-sm snap-start overflow-hidden group block" href="https://www.work24.go.kr/hr/a/a/3100/selectTracseDetl.do?tracseId=AIG20250000523851&tracseTme=3&crseTracseSe=C0061&trainstCstmrId=500020036328" target="_blank" rel="noopener">
-<div class="h-32 relative bg-gradient-to-br from-primary to-tertiary flex items-center justify-center">
-<span class="material-symbols-outlined text-white/80" style="font-size:44px;">inventory_2</span>
-<div class="absolute top-3 left-3 bg-white/90 backdrop-blur-sm px-2 py-1 rounded text-[10px] font-bold text-[#d84315]">운송관리</div>
-</div>
-<div class="p-4">
-<h3 class="font-label-lg text-base text-on-surface font-bold mb-1 line-clamp-2">물류무역 실무 (국제무역사, 물류관리사) B</h3>
-<div class="flex gap-1 mb-3">
-<span class="text-[10px] bg-surface-container px-2 py-1 rounded text-on-surface-variant">국비지원</span>
-<span class="text-[10px] bg-surface-container px-2 py-1 rounded text-on-surface-variant">국가기간전략산업직종</span>
-</div>
-<div class="flex items-center justify-between">
-<p class="font-price-display text-lg text-on-surface">4,236,800원</p>
-<span class="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center text-[#d84315] group-hover:bg-[#d84315] group-hover:text-white transition-colors">
-<span class="material-symbols-outlined text-sm">arrow_forward</span>
-</span>
-</div>
-</div>
-</a>
-</div>
 </section>
 <!-- Quick Services -->
 <section class="px-container-margin pb-12">
@@ -308,12 +171,12 @@
 </div>
 <h3 class="font-label-lg text-sm text-on-surface font-bold">카카오톡 상담</h3>
 </a>
-<!-- Homepage -->
-<a class="link-card bg-white rounded-xl p-4 flex flex-col items-center justify-center text-center border border-outline-variant/30" href="http://mitto.co.kr/">
+<!-- Recommended Courses -->
+<a class="link-card bg-white rounded-xl p-4 flex flex-col items-center justify-center text-center border border-outline-variant/30" href="추천과정.html">
 <div class="w-12 h-12 rounded-full flex items-center justify-center icon-home shadow-sm mb-2">
-<span class="material-symbols-outlined" data-weight="fill" style="font-variation-settings: 'FILL' 1;">language</span>
+<span class="material-symbols-outlined" data-weight="fill" style="font-variation-settings: 'FILL' 1;">school</span>
 </div>
-<h3 class="font-label-lg text-sm text-on-surface font-bold">홈페이지</h3>
+<h3 class="font-label-lg text-sm text-on-surface font-bold">추천훈련과정</h3>
 </a>
 <!-- Map -->
 <a class="link-card bg-white rounded-xl p-4 flex flex-col items-center justify-center text-center border border-outline-variant/30" href="https://map.naver.com/p/search/%EB%AF%B8%ED%86%A0%EC%A7%81%EC%97%85%EC%A0%84%EB%AC%B8%ED%95%99%EA%B5%90?c=3AGTfr%2C2z8O8d%2C16.36%2C0%2C0%2C0%2Cdh&placePath=%2Fhome%3Ffrom%3Dmap%26fromPanelNum%3D1%26additionalHeight%3D76%26timestamp%3D202608250952%26locale%3Dko%26svcName%3Dmap_pcv5%26searchText%3D%EB%AF%B8%ED%86%A0%EC%A7%81%EC%97%85%EC%A0%84%EB%AC%B8%ED%95%99%EA%B5%90">
@@ -328,6 +191,139 @@
 <span class="material-symbols-outlined" data-weight="fill" style="font-variation-settings: 'FILL' 1;">call</span>
 </div>
 <h3 class="font-label-lg text-sm text-on-surface font-bold">전화 상담</h3>
+</a>
+</div>
+</section>
+<!-- Featured Courses -->
+<section class="mb-10 pl-container-margin mt-6">
+<div class="flex justify-between items-end pr-container-margin mb-4">
+<h2 class="font-headline-md text-headline-md text-on-surface">추천 훈련과정</h2>
+<a class="font-body-sm text-sm text-[#d84315] font-semibold flex items-center" href="추천과정.html">더보기 <span class="material-symbols-outlined text-sm">chevron_right</span></a>
+</div>
+<div class="flex gap-4 overflow-x-auto hide-scrollbar pb-4 pr-container-margin snap-x">
+<!-- Course 1 -->
+<a class="min-w-[240px] bg-white rounded-2xl border border-outline-variant/30 shadow-sm snap-start overflow-hidden group block" href="https://www.work24.go.kr/hr/a/a/3100/selectTracseDetl.do?tracseId=AIG20263001336965&tracseTme=1&crseTracseSe=C0061&trainstCstmrId=500020036328" target="_blank" rel="noopener">
+<div class="h-32 relative">
+<img src="images/cource1.jpg" alt="AI기반 디지털 광고콘텐츠 영상 제작 실무" class="w-full h-full object-cover">
+<div class="absolute top-3 left-3 bg-white/90 backdrop-blur-sm px-2 py-1 rounded text-[10px] font-bold text-[#d84315]">광고콘텐츠제작</div>
+</div>
+<div class="p-4">
+<h3 class="font-label-lg text-base text-on-surface font-bold mb-1 line-clamp-2">AI기반 디지털 광고콘텐츠 영상 제작 실무</h3>
+<div class="flex gap-1 mb-3">
+<span class="text-[10px] bg-surface-container px-2 py-1 rounded text-on-surface-variant">국비지원</span>
+<span class="text-[10px] bg-surface-container px-2 py-1 rounded text-on-surface-variant">산업구조변화대응</span>
+</div>
+<div class="flex items-end justify-between">
+<div class="leading-tight">
+<p class="text-[11px] text-on-surface-variant line-through">2,995,200원</p>
+<p class="font-price-display text-lg text-[#d84315] mt-0.5">299,520원</p>
+<p class="text-[10px] font-bold text-emerald-600 mt-0.5">국취 전액무료</p>
+</div>
+<span class="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center text-[#d84315] group-hover:bg-[#d84315] group-hover:text-white transition-colors shrink-0">
+<span class="material-symbols-outlined text-sm">arrow_forward</span>
+</span>
+</div>
+</div>
+</a>
+<!-- Course 2 -->
+<a class="min-w-[240px] bg-white rounded-2xl border border-outline-variant/30 shadow-sm snap-start overflow-hidden group block" href="https://www.work24.go.kr/hr/a/a/3100/selectTracseDetl.do?tracseId=AIG20250000542316&tracseTme=1&crseTracseSe=C0061&trainstCstmrId=500020036328" target="_blank" rel="noopener">
+<div class="h-32 relative">
+<img src="images/cource2.jpg" alt="[과정평가형] 직업상담사 2급 자격증" class="w-full h-full object-cover">
+<div class="absolute top-3 left-3 bg-white/90 backdrop-blur-sm px-2 py-1 rounded text-[10px] font-bold text-[#d84315]">직업상담</div>
+</div>
+<div class="p-4">
+<h3 class="font-label-lg text-base text-on-surface font-bold mb-1 line-clamp-2">[과정평가형] 직업상담사 2급 자격증</h3>
+<div class="flex gap-1 mb-3">
+<span class="text-[10px] bg-surface-container px-2 py-1 rounded text-on-surface-variant">국비지원</span>
+<span class="text-[10px] bg-surface-container px-2 py-1 rounded text-on-surface-variant">과정평가형훈련</span>
+</div>
+<div class="flex items-end justify-between">
+<div class="leading-tight">
+<p class="text-[11px] text-on-surface-variant line-through">3,100,800원</p>
+<p class="text-[11px] font-bold text-[#d84315] mt-0.5">국취1 100,800원</p>
+<p class="text-[11px] font-bold text-[#d84315]">국취2 1,240,320원</p>
+<p class="text-[11px] font-bold text-on-surface">일반 1,395,360원</p>
+</div>
+<span class="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center text-[#d84315] group-hover:bg-[#d84315] group-hover:text-white transition-colors shrink-0">
+<span class="material-symbols-outlined text-sm">arrow_forward</span>
+</span>
+</div>
+</div>
+</a>
+<!-- Course 3 -->
+<a class="min-w-[240px] bg-white rounded-2xl border border-outline-variant/30 shadow-sm snap-start overflow-hidden group block" href="https://www.work24.go.kr/hr/a/a/3100/selectTracseDetl.do?tracseId=AIG20260000545537&tracseTme=1&crseTracseSe=C0061&trainstCstmrId=500020036328" target="_blank" rel="noopener">
+<div class="h-32 relative">
+<img src="images/cource4.jpg" alt="[AI융복합과정] AI 디지털마케팅 SNS콘텐츠 제작(영상편집·유튜브·인스타그램)" class="w-full h-full object-cover">
+<div class="absolute top-3 left-3 bg-white/90 backdrop-blur-sm px-2 py-1 rounded text-[10px] font-bold text-[#d84315]">디지털디자인</div>
+</div>
+<div class="p-4">
+<h3 class="font-label-lg text-base text-on-surface font-bold mb-1 line-clamp-2">[AI융복합과정] AI 디지털마케팅 SNS콘텐츠 제작(영상편집·유튜브·인스타그램)</h3>
+<div class="flex gap-1 mb-3">
+<span class="text-[10px] bg-surface-container px-2 py-1 rounded text-on-surface-variant">국비지원</span>
+<span class="text-[10px] bg-surface-container px-2 py-1 rounded text-on-surface-variant">국민내일배움카드</span>
+</div>
+<div class="flex items-end justify-between">
+<div class="leading-tight">
+<p class="text-[11px] text-on-surface-variant line-through">865,480원</p>
+<p class="text-[11px] font-bold text-emerald-600 mt-0.5">국취1 전액지원</p>
+<p class="text-[11px] font-bold text-[#d84315]">국취2 346,200원</p>
+<p class="text-[11px] font-bold text-on-surface">일반 389,470원</p>
+</div>
+<span class="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center text-[#d84315] group-hover:bg-[#d84315] group-hover:text-white transition-colors shrink-0">
+<span class="material-symbols-outlined text-sm">arrow_forward</span>
+</span>
+</div>
+</div>
+</a>
+<!-- Course 4 -->
+<a class="min-w-[240px] bg-white rounded-2xl border border-outline-variant/30 shadow-sm snap-start overflow-hidden group block" href="https://www.work24.go.kr/hr/a/a/3100/selectTracseDetl.do?tracseId=AIG20250000542349&tracseTme=3&crseTracseSe=C0061&trainstCstmrId=500020036328" target="_blank" rel="noopener">
+<div class="h-32 relative">
+<img src="images/cource3.jpg" alt="영상편집디자인(멀티미디어콘텐츠제작전문가 자격)" class="w-full h-full object-cover">
+<div class="absolute top-3 left-3 bg-white/90 backdrop-blur-sm px-2 py-1 rounded text-[10px] font-bold text-[#d84315]">애니메이션제작</div>
+</div>
+<div class="p-4">
+<h3 class="font-label-lg text-base text-on-surface font-bold mb-1 line-clamp-2">영상편집디자인(멀티미디어콘텐츠제작전문가 자격)</h3>
+<div class="flex gap-1 mb-3">
+<span class="text-[10px] bg-surface-container px-2 py-1 rounded text-on-surface-variant">국비지원</span>
+<span class="text-[10px] bg-surface-container px-2 py-1 rounded text-on-surface-variant">과정평가형훈련</span>
+</div>
+<div class="flex items-end justify-between">
+<div class="leading-tight">
+<p class="text-[11px] text-on-surface-variant line-through">3,744,000원</p>
+<p class="text-[11px] font-bold text-emerald-600 mt-0.5">국취1 전액무료</p>
+<p class="text-[10px] font-bold text-emerald-600">국취2 전액무료<span class="font-normal text-on-surface-variant"> (청년·중장년 제외)</span></p>
+<p class="text-[11px] font-bold text-on-surface">일반 300,000원</p>
+</div>
+<span class="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center text-[#d84315] group-hover:bg-[#d84315] group-hover:text-white transition-colors shrink-0">
+<span class="material-symbols-outlined text-sm">arrow_forward</span>
+</span>
+</div>
+</div>
+</a>
+<!-- Course 5 -->
+<a class="min-w-[240px] bg-white rounded-2xl border border-outline-variant/30 shadow-sm snap-start overflow-hidden group block" href="https://www.work24.go.kr/hr/a/a/3100/selectTracseDetl.do?tracseId=AIG20263001336759&tracseTme=3&crseTracseSe=C0061&trainstCstmrId=500020036328" target="_blank" rel="noopener">
+<div class="h-32 relative">
+<img src="images/cource5.jpg" alt="AI 스마트 해양물류·무역관리 실무자 양성과정" class="w-full h-full object-cover">
+<div class="absolute top-3 left-3 bg-white/90 backdrop-blur-sm px-2 py-1 rounded text-[10px] font-bold text-[#d84315]">운송관리</div>
+</div>
+<div class="p-4">
+<h3 class="font-label-lg text-base text-on-surface font-bold mb-1 line-clamp-2">AI 스마트 해양물류·무역관리 실무자 양성과정</h3>
+<div class="flex gap-1 mb-3">
+<span class="text-[10px] bg-surface-container px-2 py-1 rounded text-on-surface-variant">국비지원</span>
+<span class="text-[10px] bg-surface-container px-2 py-1 rounded text-on-surface-variant">산업구조변화대응</span>
+</div>
+<div class="flex items-end justify-between">
+<div class="leading-tight">
+<p class="text-[11px] text-on-surface-variant line-through">5,852,080원</p>
+<p class="text-[11px] font-bold text-emerald-600 mt-0.5">국취1 전액무료</p>
+<p class="text-[10px] font-bold text-emerald-600">국취2 전액무료<span class="font-normal text-on-surface-variant"> (청년·중장년 제외)</span></p>
+<p class="text-[11px] font-bold text-on-surface">일반 300,000원</p>
+</div>
+<span class="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center text-[#d84315] group-hover:bg-[#d84315] group-hover:text-white transition-colors shrink-0">
+<span class="material-symbols-outlined text-sm">arrow_forward</span>
+</span>
+</div>
+</div>
 </a>
 </div>
 </section>

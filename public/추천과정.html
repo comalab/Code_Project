@@ -189,7 +189,7 @@
 
   .course-bottom {
     display: flex;
-    align-items: center;
+    align-items: flex-end;
     justify-content: space-between;
     margin-top: 2px;
     padding-top: 10px;
@@ -206,6 +206,44 @@
     font-size: 11px;
     color: var(--ink-faint);
     margin-left: 3px;
+  }
+
+  .price-tiers {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+    line-height: 1.35;
+  }
+  .price-original {
+    font-size: 11px;
+    color: var(--ink-faint);
+    text-decoration: line-through;
+    margin-bottom: 1px;
+  }
+  .tier-free {
+    font-size: 12.5px;
+    font-weight: 800;
+    color: #16a34a;
+  }
+  .tier-free small {
+    font-weight: 500;
+    color: var(--ink-faint);
+    font-size: 10.5px;
+  }
+  .tier-discount {
+    font-size: 12.5px;
+    font-weight: 800;
+    color: var(--orange-700);
+  }
+  .tier-general {
+    font-size: 12.5px;
+    font-weight: 800;
+    color: var(--ink);
+  }
+  .tier-hero {
+    font-size: 16px;
+    font-weight: 900;
+    color: var(--orange-700);
   }
 
   .go {
@@ -241,7 +279,7 @@
       </a>
       <h1>추천과정 안내</h1>
     </div>
-    <p>국비지원 인기 훈련과정 6선 · 클릭 시 상세 정보로 이동</p>
+    <p>국비지원 인기 훈련과정 5선 · 클릭 시 상세 정보로 이동</p>
   </header>
 
   <main class="list" aria-label="추천과정 목록">
@@ -257,7 +295,11 @@
         <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v12H7l-3 3V4Z"/></svg>광고콘텐츠제작</span>
       </div>
       <div class="course-bottom">
-        <span class="price">2,995,200원<small>정부지원단가</small></span>
+        <div class="price-tiers">
+          <span class="price-original">2,995,200원</span>
+          <span class="tier-hero">299,520원</span>
+          <span class="tier-free">국취 전액무료</span>
+        </div>
         <span class="go">과정 상세보기<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></span>
       </div>
     </a>
@@ -273,23 +315,33 @@
         <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v12H7l-3 3V4Z"/></svg>직업상담</span>
       </div>
       <div class="course-bottom">
-        <span class="price">3,100,800원<small>정부지원단가</small></span>
+        <div class="price-tiers">
+          <span class="price-original">3,100,800원</span>
+          <span class="tier-discount">국취1 100,800원</span>
+          <span class="tier-discount">국취2 1,240,320원</span>
+          <span class="tier-general">일반 1,395,360원</span>
+        </div>
         <span class="go">과정 상세보기<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></span>
       </div>
     </a>
 
-    <a class="course" href="https://www.work24.go.kr/hr/a/a/3100/selectTracseDetl.do?tracseId=AIG20253001134738&tracseTme=2&crseTracseSe=C0061&trainstCstmrId=500020036328" target="_blank" rel="noopener">
+    <a class="course" href="https://www.work24.go.kr/hr/a/a/3100/selectTracseDetl.do?tracseId=AIG20260000545537&tracseTme=1&crseTracseSe=C0061&trainstCstmrId=500020036328" target="_blank" rel="noopener">
       <div class="course-top">
-        <span class="badge">산업구조변화대응</span>
+        <span class="badge">국민내일배움카드</span>
       </div>
-      <h2 class="course-title">(2025) 디지털 스마트케어 콘텐츠 디자인 실무(프리미어, 에펙)</h2>
+      <h2 class="course-title">[AI융복합과정] AI 디지털마케팅 SNS콘텐츠 제작(영상편집·유튜브·인스타그램)</h2>
       <div class="course-meta">
-        <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="17" rx="2"/><path d="M3 9h18M8 3v4M16 3v4"/></svg>2026.09.02 ~ 2026.12.21</span>
-        <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="3.2"/><path d="M5 20c1.2-4 4-6 7-6s5.8 2 7 6"/></svg>정원 20명 · 신청 1명</span>
-        <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v12H7l-3 3V4Z"/></svg>UI/UX엔지니어링 · 만족도 85.7</span>
+        <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="17" rx="2"/><path d="M3 9h18M8 3v4M16 3v4"/></svg>2026.09.03 ~ 2026.10.16</span>
+        <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="3.2"/><path d="M5 20c1.2-4 4-6 7-6s5.8 2 7 6"/></svg>정원 20명 · 신청 2명</span>
+        <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v12H7l-3 3V4Z"/></svg>디지털디자인</span>
       </div>
       <div class="course-bottom">
-        <span class="price">3,972,000원<small>정부지원단가</small></span>
+        <div class="price-tiers">
+          <span class="price-original">865,480원</span>
+          <span class="tier-free">국취1 전액지원</span>
+          <span class="tier-discount">국취2 346,200원</span>
+          <span class="tier-general">일반 389,470원</span>
+        </div>
         <span class="go">과정 상세보기<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></span>
       </div>
     </a>
@@ -305,7 +357,12 @@
         <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v12H7l-3 3V4Z"/></svg>애니메이션제작 · 만족도 98.4</span>
       </div>
       <div class="course-bottom">
-        <span class="price">3,744,000원<small>정부지원단가</small></span>
+        <div class="price-tiers">
+          <span class="price-original">3,744,000원</span>
+          <span class="tier-free">국취1 전액무료</span>
+          <span class="tier-free">국취2 전액무료<small> (청년·중장년 제외)</small></span>
+          <span class="tier-general">일반 300,000원</span>
+        </div>
         <span class="go">과정 상세보기<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></span>
       </div>
     </a>
@@ -321,23 +378,12 @@
         <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v12H7l-3 3V4Z"/></svg>운송관리</span>
       </div>
       <div class="course-bottom">
-        <span class="price">5,852,080원<small>정부지원단가</small></span>
-        <span class="go">과정 상세보기<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></span>
-      </div>
-    </a>
-
-    <a class="course" href="https://www.work24.go.kr/hr/a/a/3100/selectTracseDetl.do?tracseId=AIG20250000523851&tracseTme=3&crseTracseSe=C0061&trainstCstmrId=500020036328" target="_blank" rel="noopener">
-      <div class="course-top">
-        <span class="badge">국가기간전략산업직종</span>
-      </div>
-      <h2 class="course-title">[물류관리] 물류무역 실무 (국제무역사, 물류관리사) B</h2>
-      <div class="course-meta">
-        <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="17" rx="2"/><path d="M3 9h18M8 3v4M16 3v4"/></svg>2026.08.26 ~ 2026.12.21</span>
-        <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="3.2"/><path d="M5 20c1.2-4 4-6 7-6s5.8 2 7 6"/></svg>정원 30명</span>
-        <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v12H7l-3 3V4Z"/></svg>운송관리 · 만족도 100</span>
-      </div>
-      <div class="course-bottom">
-        <span class="price">4,236,800원<small>정부지원단가</small></span>
+        <div class="price-tiers">
+          <span class="price-original">5,852,080원</span>
+          <span class="tier-free">국취1 전액무료</span>
+          <span class="tier-free">국취2 전액무료<small> (청년·중장년 제외)</small></span>
+          <span class="tier-general">일반 300,000원</span>
+        </div>
         <span class="go">과정 상세보기<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></span>
       </div>
     </a>
