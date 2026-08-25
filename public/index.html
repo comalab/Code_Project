@@ -139,7 +139,7 @@
     }
   </style>
 </head>
-<body class="bg-surface text-on-surface font-body-md antialiased pb-32 h-screen max-w-md mx-auto flex flex-col relative shadow-xl overflow-x-hidden">
+<body class="bg-surface text-on-surface font-body-md antialiased pb-32 min-h-screen max-w-md mx-auto flex flex-col relative shadow-xl overflow-x-hidden">
 <!-- TopAppBar -->
 <header class="bg-primary dark:bg-primary-container text-on-primary dark:text-on-primary-container font-headline-md text-headline-md docked full-width top-0 shadow-md transition-all duration-200 active:scale-95 flex justify-between items-center px-4 h-16 w-full z-50 fixed max-w-md mx-auto hidden md:flex">
 <button class="hover:bg-primary-fixed-dim/20 p-2 rounded-full flex items-center justify-center">
@@ -151,7 +151,7 @@
 </button>
 </header>
 <!-- Main Content Area -->
-<main class="flex-1 overflow-y-auto pb-6">
+<main class="flex-1 pb-6">
 <!-- Hero Banner -->
 <section class="banner-gradient rounded-b-[32px] pt-10 pb-20 px-container-margin relative flex flex-col items-center justify-center text-center">
 <div class="w-20 h-20 bg-white/15 border border-white/35 rounded-2xl flex items-center justify-center mb-6 mt-8 shadow-lg overflow-hidden">
@@ -328,8 +328,8 @@
 </div>
 </section>
 </main>
-<!-- Bottom Action Button Container (Fixed above nav) -->
-<div class="fixed bottom-[72px] md:bottom-6 inset-x-0 w-full px-container-margin z-40 max-w-md mx-auto">
+<!-- Bottom Action Button Container -->
+<div class="fixed bottom-0 inset-x-0 w-full max-w-md mx-auto px-container-margin pt-3 z-40 bg-gradient-to-t from-surface via-surface to-transparent" style="padding-bottom: calc(14px + env(safe-area-inset-bottom));">
 <a href="tel:051-808-0301" class="w-full bg-[#d84315] hover:bg-primary-container text-white py-4 rounded-xl font-label-lg text-label-lg shadow-lg flex items-center justify-center gap-2 transition-colors active:scale-95 duration-200">
 <span class="material-symbols-outlined" data-weight="fill" style="font-variation-settings: 'FILL' 1;">call</span>
             전화하기 (051-808-0301)
