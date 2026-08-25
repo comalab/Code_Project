@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>추천과정 안내 | 미토직업전문학교</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Noto+Sans+KR:wght@400;500;700;900&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --orange-900: #7A2E0E;
+    --orange-800: #9E3B10;
+    --orange-700: #D9570F;
+    --orange-600: #F2691A;
+    --orange-500: #FF8A3D;
+    --orange-100: #FDEDE0;
+
+    --bg: #FBF6F1;
+    --surface: #FFFFFF;
+    --surface-2: #F6EDE5;
+    --ink: #2B1C12;
+    --ink-muted: #7A6656;
+    --ink-faint: #BBA48D;
+    --border: #EFE1D3;
+    --shadow: 0 18px 40px -18px rgba(122, 46, 14, 0.35);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #17110B;
+      --surface: #221A12;
+      --surface-2: #2B2116;
+      --ink: #F6ECE1;
+      --ink-muted: #C7B39E;
+      --ink-faint: #7A6656;
+      --border: #3A2C1C;
+      --shadow: 0 18px 40px -18px rgba(0, 0, 0, 0.6);
+    }
+  }
+
+  :root[data-theme="dark"] {
+    --bg: #17110B;
+    --surface: #221A12;
+    --surface-2: #2B2116;
+    --ink: #F6ECE1;
+    --ink-muted: #C7B39E;
+    --ink-faint: #7A6656;
+    --border: #3A2C1C;
+    --shadow: 0 18px 40px -18px rgba(0, 0, 0, 0.6);
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    min-height: 100vh;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: "Noto Sans KR", "Malgun Gothic", sans-serif;
+    display: flex;
+    justify-content: center;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .page {
+    width: 100%;
+    max-width: 448px;
+    min-height: 100vh;
+    background: var(--surface);
+    display: flex;
+    flex-direction: column;
+    box-shadow: var(--shadow);
+  }
+
+  @media (min-width: 480px) {
+    body { padding: 32px 16px; }
+    .page {
+      min-height: min(920px, calc(100vh - 64px));
+      border-radius: 28px;
+      overflow: hidden;
+    }
+  }
+
+  .topbar {
+    position: relative;
+    padding: 18px 20px 26px;
+    background: radial-gradient(120% 90% at 50% 0%, var(--orange-600) 0%, var(--orange-800) 55%, var(--orange-900) 100%);
+    color: #fff;
+  }
+
+  .topbar-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .back-btn {
+    width: 34px;
+    height: 34px;
+    flex: none;
+    border-radius: 50%;
+    border: none;
+    background: rgba(255, 255, 255, 0.16);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+  }
+  .back-btn svg { width: 18px; height: 18px; }
+  .back-btn:focus-visible { outline: 2px solid #fff; outline-offset: 2px; }
+
+  .topbar h1 {
+    margin: 0;
+    font-family: "Black Han Sans", "Noto Sans KR", sans-serif;
+    font-weight: 400;
+    font-size: 22px;
+    letter-spacing: 0.3px;
+  }
+
+  .topbar p {
+    margin: 6px 0 0 44px;
+    font-size: 12.5px;
+    color: rgba(255, 255, 255, 0.78);
+    letter-spacing: 0.02em;
+  }
+
+  .list {
+    flex: 1;
+    padding: 16px 18px 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .course {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 16px 16px 14px;
+    border-radius: 16px;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    text-decoration: none;
+    color: var(--ink);
+    transition: transform 0.12s ease, border-color 0.12s ease;
+  }
+  .course:hover { border-color: var(--orange-500); transform: translateY(-1px); }
+  .course:focus-visible { outline: 2px solid var(--orange-600); outline-offset: 2px; }
+
+  .course-top {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 10px;
+  }
+
+  .badge {
+    display: inline-block;
+    padding: 3px 9px;
+    border-radius: 999px;
+    background: var(--surface-2);
+    color: var(--orange-700);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    white-space: nowrap;
+  }
+
+  .course-title {
+    margin: 0;
+    font-size: 15px;
+    font-weight: 700;
+    line-height: 1.35;
+  }
+
+  .course-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px 14px;
+    font-size: 12.5px;
+    color: var(--ink-muted);
+  }
+
+  .course-meta span { display: flex; align-items: center; gap: 4px; }
+  .course-meta svg { width: 13px; height: 13px; flex: none; color: var(--ink-faint); }
+
+  .course-bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 2px;
+    padding-top: 10px;
+    border-top: 1px dashed var(--border);
+  }
+
+  .price {
+    font-size: 14px;
+    font-weight: 900;
+    color: var(--orange-700);
+  }
+  .price small {
+    font-weight: 500;
+    font-size: 11px;
+    color: var(--ink-faint);
+    margin-left: 3px;
+  }
+
+  .go {
+    display: flex;
+    align-items: center;
+    gap: 3px;
+    font-size: 12.5px;
+    font-weight: 700;
+    color: var(--orange-700);
+  }
+  .go svg { width: 15px; height: 15px; }
+
+  .foot {
+    text-align: center;
+    margin: 4px 0 0;
+    padding-bottom: calc(18px + env(safe-area-inset-bottom));
+    font-size: 11px;
+    color: var(--ink-faint);
+    letter-spacing: 0.02em;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .course { transition: none; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+  <header class="topbar">
+    <div class="topbar-row">
+      <a class="back-btn" href="미토직업전문학교.html" aria-label="메인으로 돌아가기">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+      </a>
+      <h1>추천과정 안내</h1>
+    </div>
+    <p>국비지원 인기 훈련과정 6선 · 클릭 시 상세 정보로 이동</p>
+  </header>
+
+  <main class="list" aria-label="추천과정 목록">
+
+    <a class="course" href="https://www.work24.go.kr/hr/a/a/3100/selectTracseDetl.do?tracseId=AIG20263001336965&tracseTme=1&crseTracseSe=C0061&trainstCstmrId=500020036328" target="_blank" rel="noopener">
+      <div class="course-top">
+        <span class="badge">산업구조변화대응</span>
+      </div>
+      <h2 class="course-title">[일반_지원] AI기반 디지털 광고콘텐츠 영상 제작 실무</h2>
+      <div class="course-meta">
+        <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="17" rx="2"/><path d="M3 9h18M8 3v4M16 3v4"/></svg>2026.08.31 ~ 2026.12.01</span>
+        <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="3.2"/><path d="M5 20c1.2-4 4-6 7-6s5.8 2 7 6"/></svg>정원 20명 · 신청 12명</span>
+        <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v12H7l-3 3V4Z"/></svg>광고콘텐츠제작</span>
+      </div>
+      <div class="course-bottom">
+        <span class="price">2,995,200원<small>정부지원단가</small></span>
+        <span class="go">과정 상세보기<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></span>
+      </div>
+    </a>
+
+    <a class="course" href="https://www.work24.go.kr/hr/a/a/3100/selectTracseDetl.do?tracseId=AIG20250000542316&tracseTme=1&crseTracseSe=C0061&trainstCstmrId=500020036328" target="_blank" rel="noopener">
+      <div class="course-top">
+        <span class="badge">과정평가형훈련</span>
+      </div>
+      <h2 class="course-title">[과정평가형] 직업상담사 2급 자격증</h2>
+      <div class="course-meta">
+        <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="17" rx="2"/><path d="M3 9h18M8 3v4M16 3v4"/></svg>2026.09.04 ~ 2026.12.08</span>
+        <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="3.2"/><path d="M5 20c1.2-4 4-6 7-6s5.8 2 7 6"/></svg>정원 20명 · 신청 2명</span>
+        <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v12H7l-3 3V4Z"/></svg>직업상담</span>
+      </div>
+      <div class="course-bottom">
+        <span class="price">3,100,800원<small>정부지원단가</small></span>
+        <span class="go">과정 상세보기<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></span>
+      </div>
+    </a>
+
+    <a class="course" href="https://www.work24.go.kr/hr/a/a/3100/selectTracseDetl.do?tracseId=AIG20253001134738&tracseTme=2&crseTracseSe=C0061&trainstCstmrId=500020036328" target="_blank" rel="noopener">
+      <div class="course-top">
+        <span class="badge">산업구조변화대응</span>
+      </div>
+      <h2 class="course-title">(2025) 디지털 스마트케어 콘텐츠 디자인 실무(프리미어, 에펙)</h2>
+      <div class="course-meta">
+        <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="17" rx="2"/><path d="M3 9h18M8 3v4M16 3v4"/></svg>2026.09.02 ~ 2026.12.21</span>
+        <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="3.2"/><path d="M5 20c1.2-4 4-6 7-6s5.8 2 7 6"/></svg>정원 20명 · 신청 1명</span>
+        <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v12H7l-3 3V4Z"/></svg>UI/UX엔지니어링 · 만족도 85.7</span>
+      </div>
+      <div class="course-bottom">
+        <span class="price">3,972,000원<small>정부지원단가</small></span>
+        <span class="go">과정 상세보기<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></span>
+      </div>
+    </a>
+
+    <a class="course" href="https://www.work24.go.kr/hr/a/a/3100/selectTracseDetl.do?tracseId=AIG20250000542349&tracseTme=3&crseTracseSe=C0061&trainstCstmrId=500020036328" target="_blank" rel="noopener">
+      <div class="course-top">
+        <span class="badge">과정평가형훈련</span>
+      </div>
+      <h2 class="course-title">[과정평가형] 영상편집디자인(멀티미디어콘텐츠제작전문가 자격)</h2>
+      <div class="course-meta">
+        <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="17" rx="2"/><path d="M3 9h18M8 3v4M16 3v4"/></svg>2026.08.25 ~ 2026.12.11</span>
+        <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="3.2"/><path d="M5 20c1.2-4 4-6 7-6s5.8 2 7 6"/></svg>정원 20명</span>
+        <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v12H7l-3 3V4Z"/></svg>애니메이션제작 · 만족도 98.4</span>
+      </div>
+      <div class="course-bottom">
+        <span class="price">3,744,000원<small>정부지원단가</small></span>
+        <span class="go">과정 상세보기<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></span>
+      </div>
+    </a>
+
+    <a class="course" href="https://www.work24.go.kr/hr/a/a/3100/selectTracseDetl.do?tracseId=AIG20263001336759&tracseTme=3&crseTracseSe=C0061&trainstCstmrId=500020036328" target="_blank" rel="noopener">
+      <div class="course-top">
+        <span class="badge">산업구조변화대응</span>
+      </div>
+      <h2 class="course-title">[일반_육성] AI 스마트 해양물류·무역관리 실무자 양성과정</h2>
+      <div class="course-meta">
+        <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="17" rx="2"/><path d="M3 9h18M8 3v4M16 3v4"/></svg>2026.08.26 ~ 2027.01.06</span>
+        <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="3.2"/><path d="M5 20c1.2-4 4-6 7-6s5.8 2 7 6"/></svg>정원 30명</span>
+        <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v12H7l-3 3V4Z"/></svg>운송관리</span>
+      </div>
+      <div class="course-bottom">
+        <span class="price">5,852,080원<small>정부지원단가</small></span>
+        <span class="go">과정 상세보기<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></span>
+      </div>
+    </a>
+
+    <a class="course" href="https://www.work24.go.kr/hr/a/a/3100/selectTracseDetl.do?tracseId=AIG20250000523851&tracseTme=3&crseTracseSe=C0061&trainstCstmrId=500020036328" target="_blank" rel="noopener">
+      <div class="course-top">
+        <span class="badge">국가기간전략산업직종</span>
+      </div>
+      <h2 class="course-title">[물류관리] 물류무역 실무 (국제무역사, 물류관리사) B</h2>
+      <div class="course-meta">
+        <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="17" rx="2"/><path d="M3 9h18M8 3v4M16 3v4"/></svg>2026.08.26 ~ 2026.12.21</span>
+        <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="3.2"/><path d="M5 20c1.2-4 4-6 7-6s5.8 2 7 6"/></svg>정원 30명</span>
+        <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v12H7l-3 3V4Z"/></svg>운송관리 · 만족도 100</span>
+      </div>
+      <div class="course-bottom">
+        <span class="price">4,236,800원<small>정부지원단가</small></span>
+        <span class="go">과정 상세보기<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></span>
+      </div>
+    </a>
+
+  </main>
+
+  <p class="foot">미토직업전문학교</p>
+</div>
+</body>
+</html>
