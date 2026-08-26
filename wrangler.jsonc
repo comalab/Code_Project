@@ -1,10 +1,37 @@
 {
   "name": "code-project",
   "compatibility_date": "2024-09-25",
+  "main": "src/worker.js",
   "assets": {
     "directory": "./public",
-    "not_found_handling": "404-page"
+    "not_found_handling": "404-page",
+    "html_handling": "none",
+    "binding": "ASSETS",
+    // Korean filenames must be percent-encoded here (Cloudflare matches run_worker_first
+    // against the raw wire path, not the decoded Unicode string) or the worker never runs
+    // for these routes and D1 data never gets injected.
+    "run_worker_first": [
+      "/",
+      "/index.html",
+      "/%EB%AF%B8%ED%86%A0%EC%A7%81%EC%97%85%EC%A0%84%EB%AC%B8%ED%95%99%EA%B5%90.html",
+      "/%EC%B6%94%EC%B2%9C%EA%B3%BC%EC%A0%95.html",
+      "/api/*",
+      "/uploads/*"
+    ]
   },
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "mito-courses",
+      "database_id": "REPLACE_WITH_D1_DATABASE_ID"
+    }
+  ],
+  "r2_buckets": [
+    {
+      "binding": "IMAGES",
+      "bucket_name": "mito-images"
+    }
+  ],
     "observability": {
     "enabled": false,
     "head_sampling_rate": 1,

@@ -1,0 +1,13 @@
+{
+  "name": "code-project",
+  "private": true,
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "db:migrate:local": "wrangler d1 execute mito-courses --local --file=./migrations/0001_init.sql && wrangler d1 execute mito-courses --local --file=./migrations/0002_seed.sql",
+    "db:migrate:remote": "wrangler d1 execute mito-courses --remote --file=./migrations/0001_init.sql && wrangler d1 execute mito-courses --remote --file=./migrations/0002_seed.sql"
+  },
+  "devDependencies": {
+    "wrangler": "^4.126.0"
+  }
+}

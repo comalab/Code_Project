@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>추천과정 관리자 | 미토직업전문학교</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --orange: #d84315;
+    --orange-dark: #a8330f;
+    --ink: #2B1C12;
+    --ink-muted: #7A6656;
+    --bg: #FBF6F1;
+    --surface: #FFFFFF;
+    --border: #EFE1D3;
+    --danger: #c0392b;
+    --success: #16a34a;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: "Noto Sans KR", "Malgun Gothic", sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: 880px; margin: 0 auto; padding: 20px 16px 80px; }
+  h1 { font-size: 20px; margin: 8px 0 20px; }
+  h1 small { display: block; font-size: 12px; color: var(--ink-muted); font-weight: 500; margin-top: 2px; }
+
+  /* ---- login ---- */
+  #login-screen { display: flex; min-height: 100vh; align-items: center; justify-content: center; padding: 16px; }
+  .login-card { width: 100%; max-width: 340px; background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 28px 24px; box-shadow: 0 18px 40px -18px rgba(122,46,14,0.25); }
+  .login-card h2 { margin: 0 0 4px; font-size: 18px; }
+  .login-card p { margin: 0 0 20px; font-size: 12.5px; color: var(--ink-muted); }
+
+  /* ---- form controls ---- */
+  label { display: block; font-size: 12.5px; font-weight: 700; color: var(--ink-muted); margin: 12px 0 5px; }
+  label:first-child { margin-top: 0; }
+  input[type=text], input[type=number], input[type=password], input[type=date], select, textarea {
+    width: 100%; padding: 9px 11px; border: 1px solid var(--border); border-radius: 8px;
+    font-size: 14px; font-family: inherit; color: var(--ink); background: var(--surface);
+  }
+  input:focus, select:focus, textarea:focus { outline: 2px solid var(--orange); outline-offset: -1px; }
+  .row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+    padding: 10px 16px; border-radius: 8px; border: none; font-size: 13.5px; font-weight: 700;
+    cursor: pointer; font-family: inherit;
+  }
+  .btn-primary { background: var(--orange); color: #fff; }
+  .btn-primary:hover { background: var(--orange-dark); }
+  .btn-ghost { background: var(--surface); color: var(--ink); border: 1px solid var(--border); }
+  .btn-ghost:hover { border-color: var(--orange); }
+  .btn-danger { background: #fff; color: var(--danger); border: 1px solid #f0c9c2; }
+  .btn-danger:hover { background: #fdf1ef; }
+  .btn-sm { padding: 5px 9px; font-size: 12px; border-radius: 6px; }
+  .btn-block { width: 100%; }
+  .error-msg { color: var(--danger); font-size: 12.5px; margin-top: 10px; min-height: 1em; }
+
+  /* ---- layout ---- */
+  .topbar { display: flex; align-items: center; justify-content: space-between; margin-bottom: 4px; }
+  .toolbar { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin: 18px 0 14px; flex-wrap: wrap; }
+  .featured-count { font-size: 12.5px; color: var(--ink-muted); background: var(--surface); border: 1px solid var(--border); padding: 6px 12px; border-radius: 999px; }
+  .featured-count strong { color: var(--orange); }
+
+  /* ---- course card ---- */
+  .course-card { display: flex; gap: 12px; background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 14px; margin-bottom: 10px; }
+  .course-thumb { width: 76px; height: 76px; border-radius: 10px; object-fit: cover; flex: none; background: var(--bg); }
+  .course-info { flex: 1; min-width: 0; }
+  .course-info .badge { display: inline-block; font-size: 10.5px; font-weight: 700; color: var(--orange); background: #FDEDE0; padding: 2px 8px; border-radius: 999px; margin-bottom: 4px; }
+  .course-info h3 { margin: 0 0 4px; font-size: 14px; line-height: 1.35; overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; }
+  .course-info .meta { font-size: 11.5px; color: var(--ink-muted); }
+  .course-actions { display: flex; flex-direction: column; align-items: flex-end; gap: 6px; flex: none; }
+  .order-btns { display: flex; gap: 4px; }
+  .featured-toggle { display: flex; align-items: center; gap: 4px; font-size: 11.5px; color: var(--ink-muted); }
+  .action-row { display: flex; gap: 6px; }
+  .empty-state { text-align: center; color: var(--ink-muted); font-size: 13px; padding: 40px 0; }
+
+  /* ---- modal ---- */
+  .modal-overlay { position: fixed; inset: 0; background: rgba(20,12,6,0.45); display: flex; align-items: flex-start; justify-content: center; padding: 24px 16px; overflow-y: auto; z-index: 50; }
+  .modal { width: 100%; max-width: 520px; background: var(--surface); border-radius: 16px; padding: 22px 22px 26px; }
+  .modal h2 { margin: 0 0 16px; font-size: 17px; }
+  .tier-row { display: flex; gap: 8px; align-items: center; margin-bottom: 8px; }
+  .tier-row select { flex: none; width: 96px; }
+  .tier-row input { flex: 1; }
+  .tier-row button { flex: none; }
+  .modal-footer { display: flex; gap: 8px; justify-content: flex-end; margin-top: 20px; }
+  .img-preview-row { display: flex; align-items: center; gap: 12px; margin-top: 6px; }
+  .img-preview { width: 64px; height: 64px; border-radius: 8px; object-fit: cover; border: 1px solid var(--border); background: var(--bg); }
+  .hint { font-size: 11px; color: var(--ink-muted); margin-top: 4px; }
+
+  @media (max-width: 480px) {
+    .row2 { grid-template-columns: 1fr; }
+    .course-card { flex-direction: column; }
+    .course-thumb { width: 100%; height: 140px; }
+    .course-actions { flex-direction: row; justify-content: space-between; width: 100%; }
+  }
+</style>
+</head>
+<body>
+
+<div id="login-screen">
+  <form id="login-form" class="login-card">
+    <h2>관리자 로그인</h2>
+    <p>추천과정 관리 페이지</p>
+    <label for="login-username">아이디</label>
+    <input type="text" id="login-username" autocomplete="username" required>
+    <label for="login-password">비밀번호</label>
+    <input type="password" id="login-password" autocomplete="current-password" required>
+    <div class="error-msg" id="login-error"></div>
+    <button type="submit" class="btn btn-primary btn-block" style="margin-top:14px;">로그인</button>
+  </form>
+</div>
+
+<div id="app-screen" class="wrap" style="display:none;">
+  <div class="topbar">
+    <h1>추천과정 관리<small>미토직업전문학교</small></h1>
+    <button class="btn btn-ghost btn-sm" id="logout-btn">로그아웃</button>
+  </div>
+
+  <div class="toolbar">
+    <span class="featured-count" id="featured-count">메인 노출: <strong>0/5</strong></span>
+    <button class="btn btn-primary" id="add-course-btn">+ 새 과정 추가</button>
+  </div>
+
+  <div id="course-list"></div>
+</div>
+
+<div id="modal-root"></div>
+
+<script>
+const el = (sel, root = document) => root.querySelector(sel);
+const els = (sel, root = document) => Array.from(root.querySelectorAll(sel));
+
+let courses = [];
+
+async function api(path, options = {}) {
+  const res = await fetch(path, {
+    ...options,
+    headers: { "Content-Type": "application/json", ...(options.headers || {}) },
+  });
+  if (res.status === 401) {
+    showLogin();
+    throw new Error("unauthorized");
+  }
+  if (!res.ok) {
+    const body = await res.json().catch(() => ({}));
+    throw new Error(body.error || `request_failed_${res.status}`);
+  }
+  const ct = res.headers.get("content-type") || "";
+  return ct.includes("application/json") ? res.json() : null;
+}
+
+function showLogin() {
+  el("#login-screen").style.display = "flex";
+  el("#app-screen").style.display = "none";
+}
+
+function showApp() {
+  el("#login-screen").style.display = "none";
+  el("#app-screen").style.display = "block";
+}
+
+async function init() {
+  try {
+    courses = await api("/api/admin/courses");
+    showApp();
+    renderList();
+  } catch {
+    showLogin();
+  }
+}
+
+el("#login-form").addEventListener("submit", async (e) => {
+  e.preventDefault();
+  const username = el("#login-username").value;
+  const password = el("#login-password").value;
+  const errorEl = el("#login-error");
+  errorEl.textContent = "";
+  try {
+    const res = await fetch("/api/login", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ username, password }),
+    });
+    if (!res.ok) {
+      errorEl.textContent = "아이디 또는 비밀번호가 올바르지 않습니다.";
+      return;
+    }
+    courses = await api("/api/admin/courses");
+    showApp();
+    renderList();
+  } catch {
+    errorEl.textContent = "로그인 중 오류가 발생했습니다.";
+  }
+});
+
+el("#logout-btn").addEventListener("click", async () => {
+  await fetch("/api/logout", { method: "POST" });
+  showLogin();
+});
+
+function formatWon(n) {
+  return `${Number(n || 0).toLocaleString("ko-KR")}원`;
+}
+
+function imgSrc(key) {
+  return key ? `/${key}` : "images/main.png";
+}
+
+function renderList() {
+  const listEl = el("#course-list");
+  const featuredCount = courses.filter((c) => c.featured).length;
+  el("#featured-count").innerHTML = `메인 노출: <strong>${featuredCount}/5</strong>`;
+
+  if (!courses.length) {
+    listEl.innerHTML = `<div class="empty-state">등록된 과정이 없습니다. "새 과정 추가"로 시작하세요.</div>`;
+    return;
+  }
+
+  const sorted = [...courses].sort((a, b) => a.sort_order - b.sort_order);
+  listEl.innerHTML = sorted
+    .map(
+      (c, i) => `
+    <div class="course-card" data-id="${c.id}">
+      <img class="course-thumb" src="${imgSrc(c.image_key)}" alt="">
+      <div class="course-info">
+        <span class="badge">${escapeHtml(c.badge)}</span>
+        <h3>${escapeHtml(c.title)}</h3>
+        <div class="meta">${escapeHtml(c.start_date)} ~ ${escapeHtml(c.end_date)} · ${escapeHtml(formatWon(c.price_original))}</div>
+      </div>
+      <div class="course-actions">
+        <div class="order-btns">
+          <button class="btn btn-ghost btn-sm move-up" ${i === 0 ? "disabled" : ""}>▲</button>
+          <button class="btn btn-ghost btn-sm move-down" ${i === sorted.length - 1 ? "disabled" : ""}>▼</button>
+        </div>
+        <label class="featured-toggle"><input type="checkbox" class="featured-checkbox" ${c.featured ? "checked" : ""}> 메인 노출</label>
+        <div class="action-row">
+          <button class="btn btn-ghost btn-sm edit-btn">수정</button>
+          <button class="btn btn-danger btn-sm delete-btn">삭제</button>
+        </div>
+      </div>
+    </div>`
+    )
+    .join("");
+
+  els(".course-card", listEl).forEach((card) => {
+    const id = Number(card.dataset.id);
+    el(".move-up", card)?.addEventListener("click", () => moveCourse(id, -1));
+    el(".move-down", card)?.addEventListener("click", () => moveCourse(id, 1));
+    el(".featured-checkbox", card).addEventListener("change", (e) => toggleFeatured(id, e.target.checked));
+    el(".edit-btn", card).addEventListener("click", () => openModal(courses.find((c) => c.id === id)));
+    el(".delete-btn", card).addEventListener("click", () => deleteCourse(id));
+  });
+}
+
+async function persistOrder() {
+  const sorted = [...courses].sort((a, b) => a.sort_order - b.sort_order);
+  await api("/api/admin/courses/reorder", {
+    method: "POST",
+    body: JSON.stringify(sorted.map((c, i) => ({ id: c.id, sort_order: i, featured: c.featured }))),
+  });
+}
+
+async function moveCourse(id, direction) {
+  const sorted = [...courses].sort((a, b) => a.sort_order - b.sort_order);
+  const idx = sorted.findIndex((c) => c.id === id);
+  const swapIdx = idx + direction;
+  if (swapIdx < 0 || swapIdx >= sorted.length) return;
+  [sorted[idx], sorted[swapIdx]] = [sorted[swapIdx], sorted[idx]];
+  sorted.forEach((c, i) => (c.sort_order = i));
+  courses = sorted;
+  renderList();
+  await persistOrder();
+}
+
+async function toggleFeatured(id, checked) {
+  const course = courses.find((c) => c.id === id);
+  course.featured = checked;
+  renderList();
+  await persistOrder();
+}
+
+async function deleteCourse(id) {
+  const course = courses.find((c) => c.id === id);
+  if (!confirm(`"${course.title}" 과정을 삭제할까요? 되돌릴 수 없습니다.`)) return;
+  await api(`/api/admin/courses/${id}`, { method: "DELETE" });
+  courses = courses.filter((c) => c.id !== id);
+  renderList();
+}
+
+function escapeHtml(v) {
+  return String(v ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+}
+
+// ---- add / edit modal ----
+
+const TIER_LABELS = { hero: "강조가", free: "무료", discount: "할인가", general: "일반가" };
+
+function tierRowHtml(tier = { type: "discount", text: "" }) {
+  return `<div class="tier-row">
+    <select class="tier-type">
+      ${Object.entries(TIER_LABELS).map(([v, label]) => `<option value="${v}" ${tier.type === v ? "selected" : ""}>${label}</option>`).join("")}
+    </select>
+    <input type="text" class="tier-text" placeholder="예: 국취1 100,800원" value="${escapeHtml(tier.text)}">
+    <button type="button" class="btn btn-ghost btn-sm remove-tier">✕</button>
+  </div>`;
+}
+
+function openModal(course) {
+  const isEdit = !!course;
+  const c = course || {
+    badge: "", title: "", category: "", satisfaction: "",
+    start_date: "", end_date: "", capacity: "", applied: "",
+    price_original: "", price_tiers: [], work24_url: "", image_key: "", featured: false,
+  };
+
+  const root = el("#modal-root");
+  root.innerHTML = `
+  <div class="modal-overlay">
+    <form class="modal" id="course-form">
+      <h2>${isEdit ? "과정 수정" : "새 과정 추가"}</h2>
+
+      <label>과정명 *</label>
+      <input type="text" name="title" required value="${escapeHtml(c.title)}">
+
+      <div class="row2">
+        <div><label>배지 (예: 산업구조변화대응) *</label><input type="text" name="badge" required value="${escapeHtml(c.badge)}"></div>
+        <div><label>분야/카테고리 *</label><input type="text" name="category" required value="${escapeHtml(c.category)}"></div>
+      </div>
+
+      <div class="row2">
+        <div><label>시작일 (예: 2026.09.01) *</label><input type="text" name="start_date" required value="${escapeHtml(c.start_date)}"></div>
+        <div><label>종료일 *</label><input type="text" name="end_date" required value="${escapeHtml(c.end_date)}"></div>
+      </div>
+
+      <div class="row2">
+        <div><label>정원</label><input type="number" name="capacity" min="0" value="${c.capacity ?? ""}"></div>
+        <div><label>신청 인원</label><input type="number" name="applied" min="0" value="${c.applied ?? ""}"></div>
+      </div>
+
+      <label>만족도 (선택, 예: 98.4)</label>
+      <input type="text" name="satisfaction" value="${escapeHtml(c.satisfaction || "")}">
+
+      <label>정가 (원) *</label>
+      <input type="number" name="price_original" min="0" required value="${c.price_original || ""}">
+
+      <label>가격 안내 항목</label>
+      <div id="tier-rows">${c.price_tiers.map(tierRowHtml).join("")}</div>
+      <button type="button" class="btn btn-ghost btn-sm" id="add-tier-btn">+ 항목 추가</button>
+
+      <label>work24 상세 링크 *</label>
+      <input type="text" name="work24_url" required value="${escapeHtml(c.work24_url)}">
+
+      <label>대표 이미지</label>
+      <div class="img-preview-row">
+        <img class="img-preview" id="img-preview" src="${imgSrc(c.image_key)}" alt="">
+        <div>
+          <input type="file" id="image-input" accept="image/png,image/jpeg,image/webp,image/gif">
+          <div class="hint">jpg/png/webp/gif, 최대 8MB. 업로드하면 바로 저장됩니다.</div>
+        </div>
+      </div>
+      <input type="hidden" name="image_key" value="${escapeHtml(c.image_key || "")}">
+
+      <label class="featured-toggle" style="margin-top:16px;"><input type="checkbox" name="featured" ${c.featured ? "checked" : ""}> 메인 페이지에 노출</label>
+
+      <div class="error-msg" id="form-error"></div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-ghost" id="cancel-btn">취소</button>
+        <button type="submit" class="btn btn-primary">${isEdit ? "저장" : "추가"}</button>
+      </div>
+    </form>
+  </div>`;
+
+  el("#add-tier-btn").addEventListener("click", () => {
+    el("#tier-rows").insertAdjacentHTML("beforeend", tierRowHtml());
+    bindTierRemoveButtons();
+  });
+  bindTierRemoveButtons();
+
+  el("#cancel-btn").addEventListener("click", () => (root.innerHTML = ""));
+  el(".modal-overlay").addEventListener("click", (e) => {
+    if (e.target.classList.contains("modal-overlay")) root.innerHTML = "";
+  });
+
+  el("#image-input").addEventListener("change", async (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+    const formData = new FormData();
+    formData.append("image", file);
+    const errorEl = el("#form-error");
+    errorEl.textContent = "";
+    try {
+      const res = await fetch("/api/admin/upload", { method: "POST", body: formData });
+      if (res.status === 401) { showLogin(); return; }
+      const body = await res.json();
+      if (!res.ok) throw new Error(body.error || "upload_failed");
+      el('input[name="image_key"]').value = body.key;
+      el("#img-preview").src = imgSrc(body.key);
+    } catch {
+      errorEl.textContent = "이미지 업로드에 실패했습니다.";
+    }
+  });
+
+  el("#course-form").addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const errorEl = el("#form-error");
+    errorEl.textContent = "";
+    const form = e.target;
+    const fd = new FormData(form);
+
+    const tiers = els(".tier-row", el("#tier-rows")).map((row) => ({
+      type: el(".tier-type", row).value,
+      text: el(".tier-text", row).value.trim(),
+    })).filter((t) => t.text);
+
+    const payload = {
+      title: fd.get("title").trim(),
+      badge: fd.get("badge").trim(),
+      category: fd.get("category").trim(),
+      satisfaction: fd.get("satisfaction").trim() || null,
+      start_date: fd.get("start_date").trim(),
+      end_date: fd.get("end_date").trim(),
+      capacity: fd.get("capacity") || null,
+      applied: fd.get("applied") || null,
+      price_original: fd.get("price_original"),
+      price_tiers: tiers,
+      work24_url: fd.get("work24_url").trim(),
+      image_key: fd.get("image_key") || null,
+      featured: fd.get("featured") === "on",
+      sort_order: isEdit ? c.sort_order : courses.length,
+    };
+
+    try {
+      if (isEdit) {
+        await api(`/api/admin/courses/${c.id}`, { method: "PUT", body: JSON.stringify(payload) });
+        Object.assign(course, payload);
+      } else {
+        const result = await api("/api/admin/courses", { method: "POST", body: JSON.stringify(payload) });
+        courses.push({ ...payload, id: result.id });
+      }
+      root.innerHTML = "";
+      renderList();
+    } catch {
+      errorEl.textContent = "저장에 실패했습니다. 필수 항목을 확인해주세요.";
+    }
+  });
+}
+
+function bindTierRemoveButtons() {
+  els(".remove-tier").forEach((btn) => {
+    btn.onclick = () => btn.closest(".tier-row").remove();
+  });
+}
+
+el("#add-course-btn").addEventListener("click", () => openModal(null));
+
+init();
+</script>
+</body>
+</html>
