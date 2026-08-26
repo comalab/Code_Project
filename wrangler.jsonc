@@ -23,7 +23,7 @@
     {
       "binding": "DB",
       "database_name": "mito-courses",
-      "database_id": "REPLACE_WITH_D1_DATABASE_ID"
+      "database_id": "1840ddd7-941d-4731-83d1-6b2127bdcf66"
     }
   ],
   "r2_buckets": [
